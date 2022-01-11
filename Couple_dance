@@ -1,0 +1,64 @@
+def couple(ht2,name,n,dict1):
+    
+    ht2.sort()
+    ht_list=[]
+    nm_list=[]
+    final_list=[]
+    name=[]
+    
+    for i in ht2:
+        for j in dict1.keys():
+            if dict1[j]==i:
+                if j not in name:
+                    if len(ht_list)==0:
+                        ht_list.append(i)
+                        nm_list.append(j)
+                        name.append(j)
+                        print(ht_list)
+                        print(nm_list)
+                        break
+                    
+                    elif len(ht_list)==1:
+                        if (i-ht_list[0])<=2:
+                            ht_list.append(i)
+                            nm_list.append(j)
+                            name.append(j)
+                            print(ht_list)
+                            print(nm_list)
+
+                        else:
+                            ht_list.clear()
+                            ht_list.append(i)
+                            nm_list.clear()
+                            nm_list.append(j)
+                            name.append(j)
+                            print(ht_list)
+                            print(nm_list)
+                        break
+                else:
+                    continue
+                        
+        if len(nm_list)==2:
+            final_list.append(nm_list)
+            ht_list.clear()
+            nm_list.clear()
+        #ht2.remove(i)
+        
+    return final_list
+    
+		
+		
+		
+# Main function
+n=int(input())
+ht=[]
+name=[]
+dict1={}
+for i in range(n):
+    list1=list(map(str,input().split()))
+    name.append(list1[0])
+    ht.append(int(list1[1]))
+    dict1[list1[0]]=int(list1[1])
+final= couple(ht,name,n,dict1)
+for k1,k2 in final:
+    print(k1+' '+k2)
